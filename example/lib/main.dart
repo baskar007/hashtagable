@@ -24,14 +24,22 @@ class _MyAppState extends State<MyApp> {
               children: <Widget>[
                 /// Tagged text only to be shown
                 HashTagText(
-                  text: "#Welcome to #hashtagable\n This is #ReadOnlyText",
+                  text:
+                      "#Welcome to Clubs ##geo-hash tag-able\n This is #ReadOnlyText, you can also mention profile using [at] @baskar",
                   basicStyle: TextStyle(fontSize: 22, color: Colors.black),
-                  decoratedStyle: TextStyle(fontSize: 22, color: Colors.red),
+                  decoratedStyle: TextStyle(fontSize: 22, color: Colors.blue),
+                  doubleHashStyle: TextStyle(fontSize: 22, color: Colors.red),
                   textAlign: TextAlign.center,
                 ),
                 HashTagTextField(
-                  basicStyle: TextStyle(fontSize: 15, color: Colors.black),
-                  decoratedStyle: TextStyle(fontSize: 15, color: Colors.blue),
+                  basicStyle: TextStyle(fontSize: 22, color: Colors.black),
+                  decoratedStyle: TextStyle(fontSize: 22, color: Colors.blue),
+                  doubleHashStyle: TextStyle(fontSize: 22, color: Colors.red),
+                  maxLines: 3,
+                  keyboardType: TextInputType.multiline,
+                  onTap: () {
+                    print("on TAB");
+                  },
                 ),
               ],
             ),

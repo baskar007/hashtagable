@@ -1,4 +1,5 @@
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
 import 'hashtag_regular_expression.dart';
 
@@ -22,9 +23,15 @@ class Decoration extends Comparable<Decoration> {
 class Decorator {
   final TextStyle textStyle;
   final TextStyle decoratedStyle;
+  final TextStyle doubleHashStyle;
   final bool decorateAtSign;
 
-  Decorator({this.textStyle, this.decoratedStyle, this.decorateAtSign = false});
+  Decorator({
+    this.textStyle,
+    this.decoratedStyle,
+    this.doubleHashStyle = const TextStyle(fontSize: 22, color: Colors.red),
+    this.decorateAtSign = false,
+  });
 
   List<Decoration> _getSourceDecorations(
       List<RegExpMatch> tags, String copiedText) {
@@ -44,9 +51,12 @@ class Decorator {
       }
 
       ///Add tagged content
+      String tagStr = copiedText.substring(tag.start, tag.end);
+      print(tagStr);
+
       result.add(Decoration(
           range: TextRange(start: tag.start, end: tag.end),
-          style: decoratedStyle));
+          style: getStyle(tagStr)));
       previousItem = TextRange(start: tag.start, end: tag.end);
     }
 
@@ -58,6 +68,20 @@ class Decorator {
           style: textStyle));
     }
     return result;
+  }
+
+  TextStyle getStyle(String tagStr) {
+    if (tagStr.trim().indexOf('##') == 0) {
+      print("Double ##");
+      return doubleHashStyle;
+    } else if (tagStr.trim().startsWith('#')) {
+      print("Hash tag");
+      return decoratedStyle;
+    } else if (tagStr.trim().startsWith('@')) {
+      print("@ Tag");
+      return decoratedStyle;
+    }
+    return textStyle;
   }
 
   ///Decorate tagged content, filter out the ones includes emoji.
@@ -117,7 +141,9 @@ class Decorator {
           emojiMatch.start, emojiMatch.end, replacementText);
     });
 
-    final regExp = decorateAtSign ? hashTagAtSignRegExp : hashTagRegExp;
+    final regExp = decorateAtSign
+        ? hashTagAtSignRegExp
+        : doubleHashTagRegExp; // hashTagRegExp;
 
     final tags = regExp.allMatches(copiedText).toList();
     if (tags.isEmpty) {

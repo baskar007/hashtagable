@@ -11,6 +11,7 @@ class HashTagText extends StatelessWidget {
       {@required this.text,
       @required this.basicStyle,
       @required this.decoratedStyle,
+      @required this.doubleHashStyle,
       this.decorateAtSign = false,
       this.onTap,
       this.textAlign = TextAlign.start,
@@ -27,6 +28,7 @@ class HashTagText extends StatelessWidget {
   final String text;
   final TextStyle basicStyle;
   final TextStyle decoratedStyle;
+  final TextStyle doubleHashStyle;
   final Function(String) onTap;
   final TextAlign textAlign;
   final TextDirection textDirection;

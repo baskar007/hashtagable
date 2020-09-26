@@ -28,6 +28,11 @@ final hashTagRegExp = RegExp(
   multiLine: true,
 );
 
+final doubleHashTagRegExp = RegExp(
+  "(?!\\n)(?:^|\\s)((##|#|@)([$_HashTagContentLetters]+))",
+  multiLine: true,
+);
+
 /// Regular expression when you select decorateAtSign
 final hashTagAtSignRegExp = RegExp(
   "(?!\\n)(?:^|\\s)([#@]([$_HashTagContentLetters]+))",

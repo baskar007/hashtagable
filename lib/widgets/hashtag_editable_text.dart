@@ -18,6 +18,7 @@ class HashTagEditableText extends EditableText {
     @required TextEditingController controller,
     @required TextStyle basicStyle,
     @required this.decoratedStyle,
+    @required this.doubleHashStyle,
     @required Color cursorColor,
     this.decorateAtSign,
     ValueChanged<String> onChanged,
@@ -124,6 +125,7 @@ class HashTagEditableText extends EditableText {
         );
 
   final TextStyle decoratedStyle;
+  final TextStyle doubleHashStyle;
 
   final decorateAtSign;
 
@@ -145,6 +147,7 @@ class HashTagEditableTextState extends EditableTextState {
     decorator = Decorator(
         textStyle: widget.style,
         decoratedStyle: widget.decoratedStyle,
+        doubleHashStyle: widget.doubleHashStyle,
         decorateAtSign: widget.decorateAtSign);
     super.initState();
   }
