@@ -28,6 +28,7 @@ final hashTagRegExp = RegExp(
   multiLine: true,
 );
 
+//   (?!\\n)(?:^|\\s)((##|#|@)([·・ー_0-9０-９a-zA-Zａ-zＡ-Ｚ])
 final doubleHashTagRegExp = RegExp(
   "(?!\\n)(?:^|\\s)((##|#|@)([$_HashTagContentLetters]+))",
   multiLine: true,
